@@ -2,6 +2,7 @@
 
 ''' Calculates the shape of a matrix '''
 
+
 def matrix_shape(matrix):
     ''' Check for matrix and return the shape '''
 
