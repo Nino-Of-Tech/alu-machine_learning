@@ -13,7 +13,7 @@ def np_shape(matrix):
 
 if __name__ == "__main__":
     import numpy as np
-
+    """ Importing numpy. """
 
     mat1 = np.array([1, 2, 3, 4, 5, 6])
     mat2 = np.array([])
