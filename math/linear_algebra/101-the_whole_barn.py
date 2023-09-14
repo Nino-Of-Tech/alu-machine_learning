@@ -31,7 +31,6 @@ def add_matrices(mat1, mat2):
 
     return result
 
-
 # Testing
 mat1 = [1, 2, 3]
 mat2 = [4, 5, 6]
@@ -40,3 +39,20 @@ print(add_matrices(mat1, mat2))
 mat1 = [[1, 2], [3, 4]]
 mat2 = [[5, 6], [7, 8]]
 print(add_matrices(mat1, mat2))
+
+
+def test_add_matrices(mat1, mat2, expected_result):
+    result = add_matrices(mat1, mat2)
+    if result == expected_result:
+        print("OK")
+    else:
+        print(f"Failed. Expected {expected_result}, but got {result}")
+
+# Testing
+mat1 = [1, 2, 3]
+mat2 = [4, 5, 6]
+test_add_matrices(mat1, mat2, [5, 7, 9])
+
+mat1 = [[1, 2], [3, 4]]
+mat2 = [[5, 6], [7, 8]]
+test_add_matrices(mat1, mat2, [[6, 8], [10, 12]])
