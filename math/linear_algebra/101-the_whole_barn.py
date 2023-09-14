@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
-from copy import deepcopy
+"""
+Module that adds two matrix.
+"""
 
 
 def add_matrices(mat1, mat2):
     """
     Adds two matrices of the same shape element-wise.
     """
+    from copy import deepcopy
+
     if not isinstance(mat1, list) or not isinstance(mat2, list):
         return None
 
