@@ -14,7 +14,3 @@ def poly_derivative(poly):
         derivative.pop()
 
     return derivative if derivative else [0] 
-    # return [0] if derivative is empty, else return derivative
-
-poly = [5, 3, 0, 1]
-print(poly_derivative(poly))
