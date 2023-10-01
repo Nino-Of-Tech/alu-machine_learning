@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This class represents a poisson distribution
+This class represents a poisson distribution in probability
 """
 
 
@@ -26,9 +26,9 @@ class Poisson:
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            self.lambtha = float(sum(data) / len(data))
+            self.lambtha = float(sum(data) / len(data)
 
-    def pmf(self, k):
+     def pmf(self, k):
         """
         Calculates the value of the PMF for a given number of “successes”
         """
@@ -54,4 +54,4 @@ class Poisson:
         result = 0
         for i in range(k + 1):
             result = result + self.pmf(i)
-        return result
+        return result)
