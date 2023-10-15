@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+""" Module for minor of a matrix from the determinant """
+
+
 def determinant(matrix):
     # Assuming the determinant function is already defined as before.
     """
@@ -34,12 +39,13 @@ def determinant(matrix):
 
     return det
 
+
 def minor(matrix):
     """
     Function to calculate the minor matrix of a given matrix
     """
     # Check if matrix is a list of lists
-    if not isinstance(matrix, list) or 
+    if not isinstance(matrix, list) or
     not all(isinstance(row, list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
 
@@ -55,8 +61,8 @@ def minor(matrix):
     for i in range(len(matrix)):
         minor_row = []
         for j in range(len(matrix)):
-            sub_matrix = [row[:j] + row[j+1:] for 
-                    idx, row in enumerate(matrix) if idx != i]
+            sub_matrix = [row[:j] + row[j+1:] for idx, row in enumerate(
+                matrix) if idx != i]
             minor_val = determinant(sub_matrix)
             minor_row.append(minor_val)
         minors.append(minor_row)
