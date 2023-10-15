@@ -1,24 +1,15 @@
 #!/usr/bin/env python3
+
+""" Calculates the determinant of a matrix """
+
+
 def determinant(matrix):
     """
-    Calculates the determinant of a matrix
-
-    Args:
-        matrix (list of lists): Matrix of
-        which the determinant should be calculated.
-
-    Returns:
-        float: Determinant of the matrix.
-
-    Raises:
-        TypeError: If matrix is not a list of lists.
-        ValueError: If matrix is not a square matrix.
-
+    Function for calculating the determinant
     """
-
     # Check if matrix is a list of lists
-    if not isinstance(matrix, list) or not
-    all(isinstance(row, list) for row in matrix):
+    if not isinstance(matrix, list) or
+    not all(isinstance(row, list) for row in matrix):
         raise TypeError("matrix must be a list of lists")
 
     # Check for an empty matrix [[]]
