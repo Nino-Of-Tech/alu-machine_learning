@@ -27,6 +27,7 @@ def determinant(matrix):
     # Check for a non-square matrix
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a square matrix")
+
     # Base case: 1x1 matrix
     if len(matrix) == 1 and len(matrix[0]) == 1:
         return matrix[0][0]
