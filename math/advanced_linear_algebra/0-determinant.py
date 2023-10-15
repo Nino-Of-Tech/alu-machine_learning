@@ -4,7 +4,8 @@ def determinant(matrix):
     Calculates the determinant of a matrix
 
     Args:
-        matrix (list of lists): Matrix of which the determinant should be calculated.
+        matrix (list of lists): Matrix of
+        which the determinant should be calculated.
 
     Returns:
         float: Determinant of the matrix.
