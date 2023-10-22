@@ -13,25 +13,27 @@ def mean_cov(X):
 
     (n, d) = X.shape
 
-    """ If X is not a 2D numpy.ndarray, raise a TypeError
-    with the message X must be a 2D numpy.ndarray """
+    """
+    If X is not a 2D numpy.ndarray, raise a TypeError
+    with the message X must be a 2D numpy.ndarray
+    """
+
     """ If X.ndim !=2: """
 
     if X.ndim! = 2:
         raise TypeError("X must be a 2D numpy.ndarray")
-    """ If n is less than 2, raise a ValueError
-    with the message X must contain multiple data points """
+    """ 
+    If n is less than 2, raise a ValueError
+    with the message X must contain multiple data points
+    """
 
     if n < 2:
         raise ValueError("X must contain multiple data points")
     """Calculate the mean for each dimension: """
     mean = np.mean(X, axis=0, keepdims=True)
 
-    print((X - mean).shape)
-    """ Calculate the covariance matrix: """
-    """ cov = np.matmul((X - mean).T, X - mean) / (n - 1) """
-    sub_x = [i - mean for i in X]
-    sum_value = sum([sub_x[i].T*sub_x[i] for i in range(len(X))])
-    cov = sum_value/(n-1)
+    y = x - mean
+    n = x.shape[0]
+    cov = np.matmul(y.T, y) / (n - 1))
 
     return mean, cov
