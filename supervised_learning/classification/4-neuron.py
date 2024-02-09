@@ -91,4 +91,3 @@ class Neuron:
         predictions = (A >= 0.5).astype(int)
         accuracy = np.mean(predictions == Y)
         return predictions, cost
-    

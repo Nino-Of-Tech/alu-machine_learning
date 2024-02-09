@@ -170,4 +170,3 @@ class Neuron:
             plt.show()
 
         return self.evaluate(X, Y)
-    
