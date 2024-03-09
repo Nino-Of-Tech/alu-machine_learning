@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
-""" Script for getting SpaceX launch info"""
-import requests
 
+import requests
+import datetime
+
+def upcoming_launch():
+    url = "https://api.spacexdata.com/v4/launches/upcoming"
+    response = requests.get(url)
+    launches = response.json()
+
+    # Sort launches by date_unix
+    launches.sort(key=lambda x: x['date_unix'])
+
+    # Get the soonest upcoming launch
+    upcoming_launch = launches[0]
+
+    # Extract launch details
+    launch_name = upcoming_launch['name']
+    launch_date = datetime.datetime.fromisoformat(upcoming_launch['date_local']).strftime('%Y-%m-%d %H:%M:%S')
+    rocket_name = upcoming_launch['rocket']
+    launchpad = upcoming_launch['launchpad']
+
+    # Get launchpad details
+    launchpad_name = launchpad['name']
+    launchpad_locality = launchpad['locality']
+
+    # Format and print the information
+    print(f"{launch_name} ({launch_date}) {rocket_name} - {launchpad_name} ({launchpad_locality})")
 
 if __name__ == '__main__':
-    url = 'https://api.spacexdata.com/v4/launches/upcoming'
-    response = requests.get(url).json()
-    date = [x['date_unix'] for x in response]
-    idx = date.index(min(date))
-    launch = response[idx]
-    launch_name = launch['name']
-    date_l = launch['date_local']
-    rocket_id = launch['rocket']
-    rocket_url = "https://api.spacexdata.com/v4/rockets/{}".format(rocket_id)
-    rocket_name = requests.get(rocket_url).json()['name']
-    lpad_id = launch['launchpad']
-    lpad_url = "https://api.spacexdata.com/v4/launchpads/{}".\
-        format(lpad_id)
-    lpad_req = requests.get(lpad_url).json()
-    lpad_name = lpad_req['name']
-    lpad_loc = lpad_req['locality']
-
-    upcoming_launch = "{} ({}) {} - {} ({})".format(launch_name, date_l,
-                                                    rocket_name, lpad_name,
-                                                    lpad_loc)
-
-    print(upcoming_launch)
+    upcoming_launch()
