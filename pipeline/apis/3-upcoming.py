@@ -1,40 +1,53 @@
 #!/usr/bin/env python3
 
 """
-This module contains a function that
-uses Uonofficial SpaceX API to display
-upcoming launch 
+This script retrieves information about the upcoming SpaceX launch
+and prints details including launch name, date, rocket name, and launchpad.
 """
 
 import requests
 
-
 def upcomingLaunch():
-    """print upcoming launch"""
+    """
+    Retrieves information about the upcoming SpaceX launch
+    and prints details including launch name, date, rocket name, and launchpad.
+    """
+    # API endpoint for upcoming launches
     url = "https://api.spacexdata.com/v4/launches/upcoming"
+    
+    # Send a GET request to the SpaceX API
     response = requests.get(url)
+    
+    # Parse the JSON response
     data = response.json()
-    launch = data[0]
-    rocket_id = launch['rocket']
-    launchpad_id = launch['launchpad']
-    rocket_url = "https://api.spacexdata.com/v4/rockets/{}".format(rocket_id)
-    launchpad_url = "https://api.spacexdata.com/v4/launchpads/{}".format(
-        launchpad_id)
-    rocket_response = requests.get(rocket_url)
-    launchpad_response = requests.get(launchpad_url)
+
+    # Sort launches by date
+    sorted_launches = sorted(data, key=lambda x: x['date_local'])
+
+    # Get details of the soonest upcoming launch
+    upcoming_launch = sorted_launches[0]
+
+    # Retrieve rocket and launchpad details
+    rocket_response = requests.get(upcoming_launch['rocket'])
+    launchpad_response = requests.get(upcoming_launch['launchpad'])
     rocket_data = rocket_response.json()
     launchpad_data = launchpad_response.json()
+
+    # Extract relevant information
+    launch_name = upcoming_launch['name']
+    launch_date = upcoming_launch['date_local']
     rocket_name = rocket_data['name']
     launchpad_name = launchpad_data['name']
     launchpad_locality = launchpad_data['locality']
+
+    # Print the details of the upcoming launch
     print("{} ({}) {} - {} ({})".format(
-        launch['name'],
-        launch['date_local'],
+        launch_name,
+        launch_date,
         rocket_name,
         launchpad_name,
         launchpad_locality
     ))
-
 
 if __name__ == "__main__":
     upcomingLaunch()
