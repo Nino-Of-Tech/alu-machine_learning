@@ -39,7 +39,3 @@ def sentientPlanets():
         time.sleep(0.5)
 
     return planets
-
-# Test the function
-planets = sentientPlanets()
-print(planets)
