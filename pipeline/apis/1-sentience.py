@@ -9,12 +9,24 @@ import requests
 
 
 def sentientPlanets():
-    """return list of names of all sentient species"""
+    """Return list of names of home planets of all sentient species"""
     url = "https://swapi-api.alx-tools.com/api/species/"
-    response = requests.get(url)
-    data = response.json()
     species = []
-    for result in data['results']:
-        if result['designation'] == "sentient":
-            species.append(result['name'])
-    return species
+
+    while url:
+        response = requests.get(url)
+        data = response.json()
+
+        for result in data['results']:
+            if result['designation'] == "sentient":
+                species.append((result['name'], result['homeworld']))
+
+        url = data['next']
+
+    planets = []
+    for species_name, homeworld_url in species:
+        response = requests.get(homeworld_url)
+        homeworld_data = response.json()
+        planets.append(homeworld_data['name'])
+
+    return planets
