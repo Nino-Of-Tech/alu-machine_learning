@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
+"""
+Function that returns homes of planet sentient
 
 """
-This module contains a function that
-uses Star Wars API to get the list of names of
-all sentinent species in the Star Wars universe"""
-
 import requests
 
 
