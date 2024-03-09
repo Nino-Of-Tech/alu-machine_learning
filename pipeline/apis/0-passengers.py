@@ -22,4 +22,3 @@ def availableShips(passengerCount):
             if passengers_no == passengerCount:
                 ships.append(result['name'])
     return ships
-    
