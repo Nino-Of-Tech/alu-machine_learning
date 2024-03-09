@@ -1,25 +1,35 @@
 #!/usr/bin/env python3
-""" Script that displays the number of launches per rocket"""
+
+"""
+This module contains a function that
+uses Uonofficial SpaceX API to display
+no. of launches per rocket
+"""
+
 import requests
 
 
-if __name__ == '__main__':
-    object = dict()
-    url = 'https://api.spacexdata.com/v4/launches'
-    launches = requests.get(url).json()
-    for launch in launches:
-        urls = "https://api.spacexdata.com/v4/rockets/{}"
+def launches_per_rocket():
+    """print no. of launches per rocket"""
+    url = "https://api.spacexdata.com/v4/launches"
+    response = requests.get(url)
+    data = response.json()
+    rockets = {}
+    for launch in data:
         rocket_id = launch['rocket']
-        rocket_url = urls.format(rocket_id)
-        rocket_name = requests.get(rocket_url).json()['name']
-
-        if rocket_name in object.keys():
-            object[rocket_name] += 1
+        rocket_url = "https://api.spacexdata.com/v4/rockets/{}".format(
+            rocket_id)
+        # print(rocket_url)
+        rocket_response = requests.get(rocket_url)
+        rocket_data = rocket_response.json()
+        rocket_name = rocket_data['name']
+        if rocket_name in rockets:
+            rockets[rocket_name] += 1
         else:
-            object[rocket_name] = 1
+            rockets[rocket_name] = 1
+    for rocket in sorted(rockets.items(), key=lambda x: (-x[1], x[0])):
+        print("{}: {}".format(rocket[0], rocket[1]))
 
-    keys = sorted(object.items(), key=lambda x: x[0])
-    keys = sorted(keys, key=lambda x: x[1], reverse=True)
 
-    for k in keys:
-        print("{}: {}".format(k[0], k[1]))
+if __name__ == "__main__":
+    launches_per_rocket()
