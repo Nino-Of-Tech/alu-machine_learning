@@ -18,22 +18,28 @@ def sentientPlanets():
         response = requests.get(url)
         data = response.json()
 
-        for result in data['results']:
-            if result['designation'] == "sentient":
-                species.append((result['name'], result['homeworld']))
+        print("Received data:", data)  # Print received data for debugging
 
-        url = data['next']
+        for result in data.get('results', []):
+            if result.get('designation') == "sentient":
+                species.append((result.get('name'), result.get('homeworld')))
+
+        url = data.get('next')
 
         # Introduce a delay to avoid hitting API rate limits
-        time.sleep(0.5)  # You may adjust the delay as needed
+        time.sleep(0.5)
 
     planets = []
     for species_name, homeworld_url in species:
         response = requests.get(homeworld_url)
         homeworld_data = response.json()
-        planets.append(homeworld_data['name'])
+        planets.append(homeworld_data.get('name'))
 
         # Introduce a delay to avoid hitting API rate limits
-        time.sleep(0.5)  # You may adjust the delay as needed
+        time.sleep(0.5)
 
     return planets
+
+# Test the function
+planets = sentientPlanets()
+print(planets)
