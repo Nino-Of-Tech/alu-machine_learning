@@ -1,31 +1,40 @@
 #!/usr/bin/env python3
 
-import requests
-import datetime
+"""
+This module contains a function that
+uses Uonofficial SpaceX API to display
+upcoming launch 
+"""
 
-def upcoming_launch():
+import requests
+
+
+def upcomingLaunch():
+    """print upcoming launch"""
     url = "https://api.spacexdata.com/v4/launches/upcoming"
     response = requests.get(url)
-    launches = response.json()
+    data = response.json()
+    launch = data[0]
+    rocket_id = launch['rocket']
+    launchpad_id = launch['launchpad']
+    rocket_url = "https://api.spacexdata.com/v4/rockets/{}".format(rocket_id)
+    launchpad_url = "https://api.spacexdata.com/v4/launchpads/{}".format(
+        launchpad_id)
+    rocket_response = requests.get(rocket_url)
+    launchpad_response = requests.get(launchpad_url)
+    rocket_data = rocket_response.json()
+    launchpad_data = launchpad_response.json()
+    rocket_name = rocket_data['name']
+    launchpad_name = launchpad_data['name']
+    launchpad_locality = launchpad_data['locality']
+    print("{} ({}) {} - {} ({})".format(
+        launch['name'],
+        launch['date_local'],
+        rocket_name,
+        launchpad_name,
+        launchpad_locality
+    ))
 
-    # Sort launches by date_unix
-    launches.sort(key=lambda x: x['date_unix'])
 
-    # Get the soonest upcoming launch
-    upcoming_launch = launches[0]
-
-    # Extract launch details
-    launch_name = upcoming_launch['name']
-    launch_date = datetime.datetime.fromisoformat(upcoming_launch['date_local']).strftime('%Y-%m-%d %H:%M:%S')
-    rocket_name = upcoming_launch['rocket']
-    launchpad = upcoming_launch['launchpad']
-
-    # Get launchpad details
-    launchpad_name = launchpad['name']
-    launchpad_locality = launchpad['locality']
-
-    # Format and print the information
-    print(f"{launch_name} ({launch_date}) {rocket_name} - {launchpad_name} ({launchpad_locality})")
-
-if __name__ == '__main__':
-    upcoming_launch()
+if __name__ == "__main__":
+    upcomingLaunch()
