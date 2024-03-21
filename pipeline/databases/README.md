@@ -1,0 +1,1 @@
+Welcome to my database project. This project includes tasks on MySQL and MonogDB. Thank you!
