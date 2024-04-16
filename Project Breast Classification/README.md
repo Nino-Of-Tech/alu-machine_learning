@@ -7,7 +7,7 @@ The project aims to a build machine learning model that will classify breast can
 The dataset used for this project is the Breast Cancer Wisconsin (Diagnostic) Data Set found on Kaggle, which can be accessed <a href="https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data" target="_blank">here</a>. It contains features computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. The data was preprocessed by handling missing values and scaling features.
 
 ## Models Architecture :gear:
-
+#### Simple Model :pushpin:
 Layers:
 
 ```
