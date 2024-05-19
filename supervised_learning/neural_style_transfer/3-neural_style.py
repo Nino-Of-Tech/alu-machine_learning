@@ -143,3 +143,4 @@ class NST:
                                     for style_output in style_outputs]
 
         self.content_feature = content_ouput
+        

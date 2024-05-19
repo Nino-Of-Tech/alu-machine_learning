@@ -94,3 +94,4 @@ class NST:
 
         model = tf.keras.models.Model(vgg19.input, model_outputs)
         self.model = model
+        
