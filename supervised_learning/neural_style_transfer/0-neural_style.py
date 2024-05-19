@@ -73,4 +73,3 @@ class NST:
         image = image / 255
         image = tf.clip_by_value(image, 0, 1)
         return image
-    
