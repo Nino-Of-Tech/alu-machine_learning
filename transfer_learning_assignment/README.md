@@ -124,6 +124,8 @@ To assess the performance of the fine-tuned models, the following evaluation met
 ## Results
 
 
+![Transfer Learning Results Image](file:///C:/Users/Lenovo/Downloads/Transfer%20Learning%20Results%20Image.jpg)
+
 +-------------+----------+----------+-----------+--------+----------+
 | Model       | Accuracy | Loss     | Precision | Recall | F1 Score |
 +-------------+----------+----------+-----------+--------+----------+
