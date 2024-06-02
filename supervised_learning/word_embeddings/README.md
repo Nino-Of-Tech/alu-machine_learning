@@ -1,0 +1,3 @@
+Word embeddings are a type of word representation in natural language processing (NLP) that maps words or phrases from a vocabulary to vectors of real numbers. These vectors capture semantic meanings of words based on the context in which they appear. The key idea behind word embeddings is to represent words in a continuous vector space where similar words are closer together in the space.
+
+Several techniques for generating word embeddings include Word2Vec, GloVe, and FastText. Thank you for checking my project!
