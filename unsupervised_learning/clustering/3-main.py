@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-initialize = __import__('0-initialize').initialize
+optimum_k = __import__('3-optimum').optimum_k
 
 if __name__ == "__main__":
     np.random.seed(0)
@@ -12,9 +12,13 @@ if __name__ == "__main__":
     d = np.random.multivariate_normal([60, 30], [[16, 0], [0, 16]], size=50)
     e = np.random.multivariate_normal([20, 70], [[16, 0], [0, 16]], size=50)
     X = np.concatenate((a, b, c, d, e), axis=0)
-    # print(X)
     np.random.shuffle(X)
-    # print(X)
-    plt.scatter(X[:, 0], X[:, 1], s=10)
+
+    results, d_vars = optimum_k(X, kmax=10)
+    print(results)
+    print(np.round(d_vars, 5))
+    plt.scatter(list(range(1, 11)), d_vars)
+    plt.xlabel('Clusters')
+    plt.ylabel('Delta Variance')
+    plt.title('Optimizing K-means')
     plt.show()
-    print(initialize(X, 5))

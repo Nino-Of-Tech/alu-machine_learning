@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import numpy as np
-import matplotlib.pyplot as plt
-initialize = __import__('0-initialize').initialize
+kmeans = __import__('1-kmeans').kmeans
+variance = __import__('2-variance').variance
 
 if __name__ == "__main__":
     np.random.seed(0)
@@ -12,9 +12,8 @@ if __name__ == "__main__":
     d = np.random.multivariate_normal([60, 30], [[16, 0], [0, 16]], size=50)
     e = np.random.multivariate_normal([20, 70], [[16, 0], [0, 16]], size=50)
     X = np.concatenate((a, b, c, d, e), axis=0)
-    # print(X)
     np.random.shuffle(X)
-    # print(X)
-    plt.scatter(X[:, 0], X[:, 1], s=10)
-    plt.show()
-    print(initialize(X, 5))
+
+    for k in range(1, 11):
+        C, _ = kmeans(X, k)
+        print('Variance with {} clusters: {}'.format(k, variance(X, C).round(5)))
