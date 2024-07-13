@@ -13,7 +13,8 @@ class BayesianOptimization:
     A class that represents a Bayesian optimization on a
     noiseless 1D Gaussian process
     """
-    def __init__(self, f, X_init, Y_init, bounds, ac_samples, l=1, sigma_f=1, xsi=0.01, minimize=True):
+    def __init__(self, f, X_init, Y_init, bounds, ac_samples, 
+                 l=1, sigma_f=1, xsi=0.01, minimize=True):
         """
         Initializes Bayesian Optimization
         """
@@ -43,13 +44,15 @@ class BayesianOptimization:
 
     def _cdf(self, Z):
         """
-        Computes the cumulative distribution function (CDF) for standard normal distribution
+        Computes the cumulative distribution 
+        function (CDF) for standard normal distribution
         """
         return 0.5 * (1 + np.erf(Z / np.sqrt(2)))
 
     def _pdf(self, Z):
         """
-        Computes the probability density function (PDF) for standard normal distribution
+        Computes the probability density 
+        function (PDF) for standard normal distribution
         """
         return (1 / np.sqrt(2 * np.pi)) * np.exp(-0.5 * Z**2)
 
@@ -68,3 +71,4 @@ class BayesianOptimization:
         else:
             idx = np.argmax(self.gp.Y)
         return self.gp.X[idx], self.gp.Y[idx]
+    
